@@ -7,9 +7,24 @@
   - name: update repository index
     yum:
       update_only: yes
+    when: ansible_distribution == "CentOS"
 
   - name: install httpd pakage
     dnf:
       name: httpd
       state: latest
+    when: ansible_distribution == "CentOS"
+
+  - name: install php on CentOS server
+    dnf:
+      name: php
+      state: latest
+    when: ansible_distribution == "CentOS"
+
+  - name: start httpd on CentOS server
+    systemd:
+      name: httpd
+      state: started
+      enabled: yes
+    when: ansible_distribution == "CentOS"
   
