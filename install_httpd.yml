@@ -1,0 +1,15 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: update repository index
+    yum:
+      update_only: yes
+
+  - name: install httpd pakage
+    dnf:
+      name: httpd
+      state: latest
+  
